@@ -1,0 +1,37 @@
+Nov 2008
+- Paul Bouchier contributed a new 8Ah lead-acid electronics-battery, to replace the 4.5Ah battery previously 
+in Tankbot, and constructed a bracket to mount the batteries in Tankbot's hold. While this will help battery
+life, the 3.2 Amps it draws (2.85A from the Via motherboard) will still limit runtime without the charger. Paul also
+built charging cables and plugs on Tankbot which allow the 13.6V power supply and the Triton charger to be
+plugged to Tankbot for battery charging & power during FW development.
+- Will Kuhnle built a mount & brackets for the servo and steerable sonar (for which Paul Bouchier 
+contributed the servo).
+- Tankbot competed in Roborama 2008b the weekend before Thanksgiving, and placed 4th in out'n-back on a double-scale course.
+
+Dec 2008
+- Paul Bouchier contributed an Arduino board to run the sonars and compass, monitor battery voltage, and drive the steerable
+sonar's servo, and Will Kuhnle mounted it. The sonars were disconnected from the AVR board and wired to the Arduino. Paul build an
+Arduino shield for sonar connectors etc, and mounted one of Dale's tiny cylons on top of the steerable sonar.
+- Paul contributed an 802.11b PCI wifi card, which replaced the Netgear router previously strapped to the 'bot. The router can
+now be used as a battery-operated router for field use, while the wifi card gives tankbot access to the internet.
+- Paul replaced the ancient version of Linux (2.4 kernel, Red Hat based) with a recent version of Puppy Linux, at Steve Rainwater's
+suggestion. This provided a 2.6 kernel and USB-serial port & wifi card support, and is optimized for running out of the 
+compact flash card. Along with VNC, it allows for GUI-control over tankbot. However, typically for Linux, getting connected to the
+club wifi network is proving problematic.
+- Paul contributed a USB webcam, to be used in tankbot's vision system.
+- Paul built a tether with a mast, which allows tankbot to wander around a little while remaining AC-powered.
+
+Jan-Feb 2009
+- Paul tried to get wifi card working. He ordered a different wifi card, which didn't work in Tankbot's PCI slot either (yet it worked in Paul's home PC). Ed found that the originally contributed wifi card doesn't have linux support. Problem still not solved - possible problem with PCI slot?
+- Paul contributed a 2GB USB thumb drive, & club donated a USB hub to accommodate the increasing number of packages
+- Filled out Puppy Linux package suite: added sshd, samba server exports the robot-FW part of the filesystem as a share, devx package adds gcc + development environment. Rebuilt & tested the apps that ran on the previous red-hat linux.
+- Paul contributed an electronic compass after reading how to use them properly, and how dead-reckoning turns can't work on a tracked robot
+- Dale Wheat contributed a video monitor, which Paul mounted & cabled to Tankbot's VIA board
+
+March 2009
+- Tankbot appeared at All-Con, and despite not behaving well, was well received by attendees
+- Jason Oliver contributed a USB wifi dongle which worked great on Puppy Linux. This was fortuitous, because Tankbot's ethernet port started to exhibit intermittent failure symptoms.
+- Paul wired up the compass connector to the arduino on the home-made shield and installed some Arduino code to continuously poll it & print the heading.
+
+April 2009
+Paul constructed a mast to mount the compass on and keep it away from metals and current.

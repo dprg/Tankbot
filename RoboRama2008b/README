@@ -1,0 +1,16 @@
+This is Paul's version of Ed & Eric's FW that drives tankbot & runs on
+the VIA board under linux. It's what was used in the fall 2008 Roborama.
+
+How to make the robot 'work'.
+
+You need to test that we can talk to the robto
+./estop
+(It should report that "the robot is talking".)
+If it reports that the robot is not talking, rerun it - the robot
+should now talk. If it doesn't, power cycle.
+
+Build the application by typing "make"
+
+Run the application with a command like:
+./outnback 0 100 0 0
+to drive 100 inches out and 100 inches backward to the start.

@@ -1,0 +1,25 @@
+Tankbot User Manual
+
+The 12V switch controls power to the ITX PC board and all other electronics. You need to press the reset button to get the ITX PC board to turn on. Pressing & holding the reset button for 4 seconds will force the ITX PC board to power off. This is effective, but not recommended, because Puppy Linux won't boot cleanly after a forced shutdown. See Puppy HOWTO for booting instructions for puppy linux.
+
+The 24V switch only controls power to the motors. Switch it off to stop Tankbot if he runs amok.
+
+The 12V battery in Tankbot is only good for about 2 hours of running, before it needs to be put on a charger. During development, it's normal to leave Tankbot plugged into his charger - he can be left plugged in indefinitely. There are 2 power plugs at the left rear - one for 12V and one for charging the 24V motor batteries. They are opposite gender, so you can't mix them up. Just plug the charger cable into the mating plug on Tankbot. You can plug & unplug Tankbot from the charger with everything booted & running. If you want to run tankbot around during development, but still leave it on "shore power", there is a rod with a 20' cable and matching plugs which can be connected between the charger and Tankbot's connector - just slip the rod into the hole in the deck at the left rear, and plug the cables together. (The rod keeps the cable out of harms way - mostly.)
+
+The 24V batteries must be charged using the Triton2 charger. The triton2 charger draws its power from Tankbot's charger - there are a pair of banana plug sockets on the charger which the triton plugs into. There is a cable in Tankbot's trunk with banana plugs (to go into the output side of the charger) with a matching connector for the 24V charge connector on the left rear of Tankbot. You cannot charge the motor batteries while running Tankbot off its 12V charger - the 12V charger doesn't have enough oomph - do one or the other. To use the Triton charger to charge the motor batteries, press select and turn the dial to NiMH (the battery type), and press the bottom of the dial to select. Dial up a charge current of 1.5 Amps, and press and hold the bottom of the dial down until it starts the test. Thereafter, the triton will charge the motor batteries, and shut off when they're charged.
+
+There is a wifi router that belongs to tankbot, which can be used to connect a PC to tankbot. Two configurations are interesting: 
+1) The router can be placed in Tankbot's belly. There's a power connector wired to battery 12V under the deck, which allows the router to run around inside tankbot. Once the router is powered, you can either connect the ethernet cable that goes with the router to Tankbot's ethernet port, or Tankbot can connect wirelessly to the router (SSID "tankbot").
+2) The router can be placed elsewhere and run off AC. There's an AC wall-wart in Tankbot's trunk for this purpose. Tankbot and the PC can connect wirelessly to the router. (I haven't tried this configuration, but it should work.)
+
+In addition, Tankbot can connect to home or club wireless networks. See the Puppy HOWTO if it doesn't connect automatically.
+
+Tankbot starts a VNC server when it boots, and the easiest way to control it once it's booted into X-windows is to attach to it with a vnc client from a PC. The vnc password is tankbot.
+
+Refer to Puppy HOWTO for further information on Linux operations.
+
+If you connect the TV monitor to the ITX PC board, Puppy can tend to boot into 640x480 resolution. You can reset it to 1024x768 as described in Puppy HoWTO, but it's a bit of a pain. On the other hand, it lets you see what's going on.
+
+Maintenance
+- Occasionally check that the front drive sprockets haven't worked loose on the motor shafts (they tend to). Tighten them with an Allen wrench if they have.
+

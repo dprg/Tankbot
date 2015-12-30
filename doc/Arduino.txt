@@ -1,0 +1,82 @@
+Arduino Documentation
+
+API - the Arduino command set
+=============================
+XXX = enter command mode. Returns COK
+RCP = Read Compass. Returns DIR123 (ie direction as 3 ascii characters), or DIRXXX for error
+PCP = loop continously printing compass reading until any key is pressed
+RS0, RS1, RS2 = Read Sonar 0 (steerable), Read Sonar 1 (front), Read Sonar 2 (rear) - not implemented in   HW yet. Returns RNG123 for range of 123 inches, or RNGXXX for error
+PS0, PS1, PS2 = loop continuously printing sonar 0, 1 or 2 until any key is pressed
+SRV090 = set servo angle to 90 degrees. Valid values are 000 to 180 Prints XXX if invalid digits supplied, or SOK otherwise.
+SWP = Sweep the servo back & forth. Only useful for testing. Stops when you enter a line
+
+FW Development HOWTO
+====================
+(assumes Arduino-15 or later)
+- Use print statements for debugging. Design your code to allow interacting with it through the serial port using minicom, so you can test it.
+
+Mode 1: No debugging, or debugging on locally-attached Arduino. 
+---------------------------------------------------------------
+- Check out a tree
+- Start the Arduino development environment, and change the sketchbook location to your
+checkout location
+- Edit/compile/(debug)
+
+Mode 2: Arduino board installed in Tankbot & attached to the ITX-Puppy Linux board
+----------------------------------------------------------------------------------
+
+- Check that you can attach to Tankbot's shared folder. (Attach to Tankbot's share at \\<Tankbot_ip>\tankbot\tankbotFW)
+- If you developed code offline & checked it into svn, run
+# svn update
+in ~/my-documents/tankbotFW to get the latest code down onto tankbot
+- Start the Arduino development environment & change the sketchbooklocation to \\<Tankbot_ip>\tankbot\tankbotFW\Arduino
+- Edit files, run verify (this does not produce executables), then run upload. This will fail, because you don't have an Arduino connected to the right serial port, but you have to run it to generate the applet folder, which contains the .hex file for Arduino
+- If you haven't done so already, connect to Tankbot and cd to ~/my-documents/tankbotFW/Arduino/<sketch_name>. Copy Makefile from one of the other directories and change TARGET to <sketch_name>
+- On tankbot, run 
+# make install
+This will burn the previously generated hex file into the Arduino microcontroller and start it running right away
+- Debug 
+
+Pin Assignment (implemented)
+============================
+Format is J{<arduino connector>-<pin>} (<arduino I/O #>}
+
+J1-1 (0) PD0/RXD reserved for Via board RXD
+J1-2 (1) PD1, TXD reserved for Via board TXD
+J3-3 (10) Steerable Sonar Servo
+J3-1 (8) Steerable Sonar enable
+J3-2 (9) Steerable Sonar RXD
+J2-3 (ADC2) Fwd Sonar Enable
+J2-4 (ADC3) Fwd Sonar RXD
+J2-5 (ADC4) Compass SDA
+J2-6 (ADC5) Compass SCL
+
+Pin Assignment (planned)
+============================
+Format is J{<arduino connector>-<pin>} (<arduino I/O #>}
+
+J1-7 (6) Steerable Sonar LED
+J2-1 (ADC0) 24V voltage
+J2-2 (ADC1) 12V voltage
+ (???) Fwd Sonar LED
+J1-3 (2) Rear Sonar enable
+J1-4 (3) Rear Sonar RXD
+Rear Sonar LED
+
+
+
+
+Sensor plug pinout:
+1 - VCC
+2 - enable
+3 - data
+4 - key
+5 - GND
+
+Compass plug pinout
+1 - VCC
+2 - SDA
+3 - SCK
+4 - GND
+5 - key
+

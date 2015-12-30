@@ -1,0 +1,30 @@
+AVR Documentation
+
+API - the AVR command set
+=========================
+Command -> from computer to Atmel
+Response -> from Atmel to Computer
+
+Motor odometry request command
+ROD\m
+    Odoemetry count for left and right motor response
+    ODO 01234567 89ABCDEF\n
+
+Set left motor PWM command
+LMT 012\n
+
+Set right motor PWM command
+RMT 012\n
+
+Emergency stop command
+XXX\n
+    Generic command received response
+    COK\n
+
+Motor velocity request command
+RVL\n
+    Motor velocities response 
+    VEL 01234567 89ABCDEF\n
+
+Pin Assignment
+==============

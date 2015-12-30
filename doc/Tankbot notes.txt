@@ -1,0 +1,25 @@
+Misc Tankbot Notes
+==================
+
+Idea: Timestamp response to query so you can correlate data from different processors
+Alternate idea: query fast as possible from sensor, and return cached value to the main processor on demand, 
+and timestamp on the main processor using average latency
+
+Basic current draw, router + uC + LEDs (PC off): 350mA
+Started PC, current went to 3.2A. (Note: voltage drop was too high to allow PC to boot - it 
+may consume more in operation) i.e. PC draws 2.85A quiescent
+
+Ed discussion 12/9/08
+- Look at Player/Stage (robotics simulator)
+- Look at active vision video - they have a link to instructions on how to use ptam
+
+Steve Rainwater got the perspex from E&D plastics downtown - they have lots of droppings - say I'm from DPRG, they might sell by the pound or give away. Note: Lexan from Elliots is equivalent.
+
+TODO List
+- Get lower power PC board
+- Make it turn
+- Refactor SW
+
+
+Wifi cards that ought to work
+- go to wireless.kernel.org for a list of wireless cards

@@ -1,0 +1,86 @@
+How to do stuff in Puppy
+========================
+
+Starting puppy Linux' desktop
+-----------------------------
+- If Puppy boots up to the prompt & stops, type xwin to start xwindows. This typically happens when you restart after a hard poweroff. In this condition, tankbot is not on the network so you can't VNC to it. Recovery via a hard-wired keybd is necessary.
+- If you need to setup video (Ignore doesn't start xwindows) type xorgwizard and run the video setup wizard. You can set screen resolution to 1024x768, or anything else that will work.
+
+If your mouse doesn't work
+--------------------------
+Alt-F1 brings up the start menu. You can use the arrow keys to move around the start menu, Enter to select an entry. Arrows to move around the fields in a dialog box.
+
+How to find out tankbot's IP:
+-----------------------------
+- Log into the club router at 192.168.1.1 (passwd is blank)
+- Select the DHCP clients link, and look for a client called puppypc. The IP address is shown next to it
+- If you have keybd & mouse, you can start an x-window and run ifconfig, to print the current IP address(es).
+
+Connecting to Tankbot using VNC
+-------------------------------
+- Once the desktop is displayed by the onboard monitor, vnc to Tankbot's IP, and use the vnc passwd "tankbot", and you'll be connected to Tankbot's desktop.
+- Puppy linux starts VNC automatically (as a service). However, as noted above, the boot can hang if it expects a mouse & doesn't find one. This can happen if you were using keybd/mouse & then disconnected them. In this case, you'll see a prompt on the onboard monitor, but no desktop. The only way out I know is to connect monitor & keybd & tell it there is a serial mouse on com2.
+
+How to attach to a network if Tankbot doesn't automatically attach:
+-------------------------------------------------------------------
+- Attach a keybd, monitor & mouse
+- Click the "connect" icon on the desktop & follow the obvious steps to configure internet by network or wireless LAN.
+
+How to install new software
+---------------------------
+- Unfortunately, puppy linux uses it's own format for install packages (a .pet package), so there is a more limited selection of packages that for more major distributions.
+- There's a limited selection of packages available from the puppy package manager (available through menu -> setup.
+- The best source of software that's not available through the puppy package manager is http://www.murga-linux.com/puppy - browse the forum for the package you want
+- Google can be your best friend
+- Once you find the package you want, open up the URL in Puppy's browser (called seabiscuit - it's really a version of the Mozilla browser). The browser will ask you if you want to run the puppy package manager to deal with that file type - say yes and it will install.
+
+
+Transferring files
+------------------
+There are 3 ways to transfer files between a PC and Tankbot:
+1) Shared Folder: the /root/my-documents/tankbot directory is exported as a windows shared folder (no password). Just navigate with Windows Explorer to \\<tankbot_ip>\tankbot and you'll see the files. This is the current working directory. You can use a PC-based IDE tool to edit, and run make on tankbot, if you want.
+2) ftp: the /root/ftpd directory is available by ftp (user root, passwd tankbot). Just get an ftp program such as WinSCP and send it to tankbot_ip and you will be able to copy files back & forth.
+3) Shut puppy down, remove the thumb drive from the USB hub, plug it into the PC, copy files onto it, & re-install it in Tankbot
+
+Using Subversion to access the repository
+-----------------------------------------
+Subversion is installed on Tankbot. The following commands are useful:
+- svn checkout http://svn.dprg.org/svn/repos/tankbot/trunk
+... work, work, work
+- svn update
+- svn add <filename> (if needed)
+- svn commit
+
+How to use serial communications to talk to AVR or Arduino boards
+-----------------------------------------------------------------
+# minicom ttyS0 
+contacts the AVR board. ^AE turns echo on (desirable). Issue the command XXX and the AVR board should respond with COK. See the AVR text doc for other commands.
+# minicom ttyUSB0 
+connects to the Arduino board.
+- Typically, you want to do ^Ae to enable local echo, so you can see what you type
+- Minicom has a poor UI. Hit ^Az to get help. If you think the comm parameters are screwed up (say, the port is wrong), you need to do ^Ao and set the port and other parameters, save it in a profile, THEN EXIT MINICOM & RESTART IT WITH THE SAVED PROFILE NAME. Look to see it says /dev/ttyS0 or /dev/ttyUSB0 when you start minicom, otherwise it will act like its talking, but will not be. The correct parameters for both AVR (ttyS0) and Arduino (ttyUSB0) are 9600/8/N/1.
+
+Puppy Linux Install Notes
+-------------------------
+- Install per HDD installation procedure on puppy linux wiki. Note: must select media to install to as "Internal (IDE or SATA) hard drive", not
+"Internal IDE/Sata Flash drive (CF card in IDE adapter", otherwise you don't get the full-install option. Go through & install grup per procedure.
+You end up with df showing ~36% use on /dev/sda2.
+- Install X11vnc server from www.murga-linux.com/puppy/viewtopic.phb?t=27424. Do it by sending the puppy browser to that URL, clicking
+the download link & telling the browser to run pupget on the application. Install x11vnc as a service. This will put an
+initialization script in the Startup directory of /root, which kicks off x11vnc on graphical startup.
+- Install the devx package, which brings g++, make, libc, and the rest of the development tools. Google for puppy linux devx, and find the latest
+download, and download the version corresponding to the puppy linux installed version. Tankbot has 4.11 installed, so I downloaded devx 4.11.sfs
+and saved it away. Then follow instructions at www.murga-linux.com/puppy/viewtopic.phb?t=22701 to install the devx package. After removing the sfs
+file, disk will be 78% full.
+- Install the openssh client & server. Search www.murga-linux.com/puppy for openssh to find the .pet files
+- edit /boot/grub/menu.lst & change 
+#timeout 30 
+to 
+timeout 5
+
+USB camera installation
+--------------------
+- Install the luvcview (available from the murga-linux forum. luvcview will require also installing sdl-1.2 (multimedia library), also available from the murga-linux forum.
+- reboot
+- run it with lucview -f yuv 
+

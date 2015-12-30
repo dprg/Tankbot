@@ -1,0 +1,13 @@
+This is an earlier version of Ed & Eric's tankbot FW that runs under linux
+on the VIA board. It was when Ed added PID capability.
+
+How to make the robot 'work'.
+
+First you need to set up the serial settings
+ctty -F /dev/ttyS0 < /root/set3.txt
+
+Second you need to test that we can talk to the robto
+/root/tankbot-v3/estop
+(It should report that "the robot is talking".)
+
+Finally, you right an amazing application and win lots of awards ;)
